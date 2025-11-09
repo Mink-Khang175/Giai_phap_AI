@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Price Forecast - Hệ thống Dự báo Giá Thông Minh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mainstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>AI Price Forecast</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="#" class="nav-item"><i class="fas fa-history"></i> Lịch sử</a>
+                <a href="#" class="nav-item"><i class="fas fa-bell"></i> Thông báo</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Main Content Area (70%) -->
+        <main class="main-content">
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <h1 class="page-title">
+                    <i class="fas fa-chart-line"></i>
+                    Bảng Điều Khiển Phân Tích Giá
+                </h1>
+
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="site-select">
+                            <i class="fas fa-store"></i> Chọn Sàn TMĐT
+                        </label>
+                        <div class="select-wrapper">
+                            <select id="site-select">
+                                <option value="shopee">🛒 Shopee</option>
+                                <option value="lazada">🏪 Lazada</option>
+                                <option value="tiki">🏬 Tiki</option>
+                            </select>
+                            <i class="fas fa-chevron-down select-arrow"></i>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="product-select">
+                            <i class="fas fa-box"></i> Chọn Sản Phẩm
+                        </label>
+                        <div class="select-wrapper">
+                            <select id="product-select">
+                                <option value="iphone">📱 iPhone 15 Pro Max 256GB</option>
+                                <option value="laptop">💻 Laptop Dell XPS 15</option>
+                                <option value="headphone">🎧 Tai nghe Sony WH-1000XM5</option>
+                            </select>
+                            <i class="fas fa-chevron-down select-arrow"></i>
+                        </div>
+                    </div>
+
+                    <button id="load-data-btn" class="btn-primary">
+                        <i class="fas fa-search"></i>
+                        <span>Phân tích ngay</span>
+                        <div class="btn-shine"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Info Card -->
+            <div class="product-info-card" id="product-info" style="display: none;">
+                <div class="product-info-content">
+                    <!-- Cột trái: CHỈ hình ảnh -->
+                    <div class="product-image-column">
+                        <div class="product-image-wrapper">
+                            <img id="product-image" src="" alt="Hình ảnh sản phẩm">
+                            <div class="image-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cột phải: TẤT CẢ thông tin -->
+                    <div class="product-details-column">
+                        <!-- Header: Thông tin sản phẩm + Badge -->
+                        <div class="product-header">
+                            <div class="header-title">
+                                <i class="fas fa-info-circle"></i>
+                                <h3>Thông Tin Sản Phẩm</h3>
+                            </div>
+                            <span class="badge badge-success status-badge">
+                                <i class="fas fa-check-circle"></i> ĐÃ TẢI
+                            </span>
+                        </div>
+                        
+                        <h2 class="product-name" id="product-name">iPhone 15 Pro Max 256GB</h2>
+                        
+                        <div class="price-section">
+                            <span class="price-label">Giá hiện tại</span>
+                            <span class="price-value" id="product-price">29.500.000đ</span>
+                        </div>
+                        
+                        <div class="product-meta-grid">
+                            <div class="meta-col">
+                                <i class="fas fa-store"></i>
+                                <div class="meta-info">
+                                    <span class="meta-label">Sàn TMĐT</span>
+                                    <strong class="meta-value" id="product-site">Shopee</strong>
+                                </div>
+                            </div>
+                            <div class="meta-col">
+                                <i class="fas fa-clock"></i>
+                                <div class="meta-info">
+                                    <span class="meta-label">Cập nhật</span>
+                                    <strong class="meta-value" id="update-time">Vừa xong</strong>
+                                </div>
+                            </div>
+                            <div class="meta-col">
+                                <i class="fas fa-star"></i>
+                                <div class="meta-info">
+                                    <span class="meta-label">Đánh giá</span>
+                                    <strong class="meta-value">4.8/5</strong>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn-analyzing">
+                            <i class="fas fa-chart-line"></i> ĐANG PHÂN TÍCH
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Historical Chart -->
+            <div class="chart-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-chart-area"></i> Biểu Đồ Lịch Sử Giá</h3>
+                    <div class="chart-controls">
+                        <button class="chart-btn active">30 ngày</button>
+                        <button class="chart-btn">60 ngày</button>
+                        <button class="chart-btn">90 ngày</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-placeholder" id="historical-chart">
+                        <div class="chart-icon">
+                            <i class="fas fa-chart-line fa-3x"></i>
+                        </div>
+                        <p>Biểu đồ lịch sử giá sẽ hiển thị tại đây</p>
+                        <small>Chọn sản phẩm và nhấn "Phân tích ngay" để xem dữ liệu</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Section -->
+            <div class="comparison-section" style="display: none;">
+                <h3><i class="fas fa-balance-scale"></i> So Sánh Giá Giữa Các Sàn</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <div class="platform-icon shopee">S</div>
+                        <h4>Shopee</h4>
+                        <p class="comparison-price">--</p>
+                    </div>
+                    <div class="comparison-card">
+                        <div class="platform-icon lazada">L</div>
+                        <h4>Lazada</h4>
+                        <p class="comparison-price">--</p>
+                    </div>
+                    <div class="comparison-card">
+                        <div class="platform-icon tiki">T</div>
+                        <h4>Tiki</h4>
+                        <p class="comparison-price">--</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Sidebar Area (30%) -->
+        <aside class="sidebar">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <h2><i class="fas fa-brain"></i> Phân Tích AI</h2>
+            </div>
+
+            <!-- Analysis Metrics -->
+            <div class="metrics-card" id="analysis-metrics" style="display: none;">
+                <h3 class="metrics-title">
+                    <i class="fas fa-chart-bar"></i> Thống Kê Giá
+                </h3>
+                <div class="metrics-grid">
+                    <div class="metric-item metric-avg">
+                        <div class="metric-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="metric-content">
+                            <span class="metric-label">Giá TB</span>
+                            <strong class="metric-value" id="avg-price">--</strong>
+                        </div>
+                    </div>
+                    <div class="metric-item metric-max">
+                        <div class="metric-icon">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                        <div class="metric-content">
+                            <span class="metric-label">Cao nhất</span>
+                            <strong class="metric-value" id="max-price">--</strong>
+                        </div>
+                    </div>
+                    <div class="metric-item metric-min">
+                        <div class="metric-icon">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <div class="metric-content">
+                            <span class="metric-label">Thấp nhất</span>
+                            <strong class="metric-value" id="min-price">--</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Prediction Button -->
+            <button id="predict-btn" class="btn-predict" style="display: none;">
+                <i class="fas fa-robot"></i>
+                <span>Xem Dự Báo AI</span>
+                <span class="predict-subtitle">Dự đoán 7 ngày tới</span>
+            </button>
+
+            <!-- Prediction Results -->
+            <div class="prediction-card" id="prediction-results" style="display: none;">
+                <div class="card-header">
+                    <h3><i class="fas fa-crystal-ball"></i> Kết Quả Dự Báo</h3>
+                    <span class="processing-badge">
+                        <i class="fas fa-microchip"></i> AI Model
+                    </span>
+                </div>
+
+                <div class="prediction-chart-container">
+                    <div class="chart-placeholder prediction-chart" id="prediction-chart">
+                        <div class="chart-icon">
+                            <i class="fas fa-chart-line fa-2x"></i>
+                        </div>
+                        <p>Biểu đồ dự báo giá 7 ngày tới</p>
+                    </div>
+                </div>
+
+                <!-- AI Explanation -->
+                <div class="ai-explanation-card">
+                    <h4><i class="fas fa-lightbulb"></i> Phân Tích Từ AI</h4>
+                    <div class="ai-explanation" id="ai-explanation">
+                        <div class="ai-loading">
+                            <div class="loading-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <p>AI đang phân tích dữ liệu...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommendation Badge -->
+                <div class="recommendation-badge">
+                    <i class="fas fa-check-circle"></i>
+                    <strong>Khuyến nghị:</strong>
+                    <span id="recommendation">Đợi mô hình phân tích...</span>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="quick-stats">
+                <h4><i class="fas fa-tachometer-alt"></i> Thống Kê Nhanh</h4>
+                <div class="stat-row">
+                    <span>Độ chính xác mô hình:</span>
+                    <strong>94.2%</strong>
+                </div>
+                <div class="stat-row">
+                    <span>Sản phẩm đã phân tích:</span>
+                    <strong>1,234</strong>
+                </div>
+                <div class="stat-row">
+                    <span>Tiết kiệm trung bình:</span>
+                    <strong class="text-success">2.3M đ</strong>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="mainjs.js"></script>
+</body>
+</html>
