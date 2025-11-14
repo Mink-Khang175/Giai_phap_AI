@@ -1,0 +1,301 @@
+product_id,name,brand,category
+anker_acc036,Anker Powerbank 10000mAh,Anker,accessory
+anker_acc084,Anker Earbuds,Anker,accessory
+anker_acc085,Anker Case,Anker,accessory
+anker_acc096,Anker Case,Anker,accessory
+anker_acc131,Anker Case,Anker,accessory
+anker_acc168,Anker Cable 1m,Anker,accessory
+anker_acc172,Anker Cable 1m,Anker,accessory
+anker_acc212,Anker Cable 1m,Anker,accessory
+anker_acc260,Anker Earbuds,Anker,accessory
+apple_lap002,Apple M1 Pro Laptop,Apple,laptop
+apple_lap044,Apple Core i5 8GB Laptop,Apple,laptop
+apple_lap076,Apple Core i5 8GB Laptop,Apple,laptop
+apple_lap097,Apple Ryzen 5 8GB Laptop,Apple,laptop
+apple_lap101,Apple Ryzen 5 8GB Laptop,Apple,laptop
+apple_lap160,Apple M1 Pro Laptop,Apple,laptop
+apple_lap253,Apple Ryzen 7 16GB Laptop,Apple,laptop
+apple_lap265,Apple Ryzen 5 8GB Laptop,Apple,laptop
+apple_lap285,Apple Core i5 8GB Laptop,Apple,laptop
+apple_lap286,Apple Core i7 16GB Laptop,Apple,laptop
+apple_pho006,Apple Nord2,Apple,phone
+apple_pho021,Apple X,Apple,phone
+apple_pho056,Apple 13,Apple,phone
+apple_pho099,Apple S23,Apple,phone
+apple_pho134,Apple Nord2,Apple,phone
+apple_pho143,Apple X,Apple,phone
+apple_pho211,Apple Note 20,Apple,phone
+apple_pho238,Apple 12,Apple,phone
+apple_pho266,Apple 14,Apple,phone
+asus_lap053,Asus Ryzen 7 16GB Laptop,Asus,laptop
+asus_lap065,Asus Ryzen 7 16GB Laptop,Asus,laptop
+asus_lap144,Asus Ryzen 7 16GB Laptop,Asus,laptop
+asus_lap169,Asus Core i5 8GB Laptop,Asus,laptop
+asus_lap179,Asus Ryzen 5 8GB Laptop,Asus,laptop
+asus_lap181,Asus Core i7 16GB Laptop,Asus,laptop
+asus_lap185,Asus Core i7 16GB Laptop,Asus,laptop
+asus_lap202,Asus Core i7 16GB Laptop,Asus,laptop
+asus_lap213,Asus M1 Pro Laptop,Asus,laptop
+audio-technica_aud010,Audio-Technica Momentum,Audio-Technica,audio
+audio-technica_aud059,Audio-Technica Momentum,Audio-Technica,audio
+audio-technica_aud118,Audio-Technica QC35,Audio-Technica,audio
+audio-technica_aud140,Audio-Technica WH-1000XM4,Audio-Technica,audio
+audio-technica_aud162,Audio-Technica Momentum,Audio-Technica,audio
+audio-technica_aud189,Audio-Technica Momentum,Audio-Technica,audio
+audio-technica_aud250,Audio-Technica TWS Pro,Audio-Technica,audio
+audio-technica_aud267,Audio-Technica Charge 5,Audio-Technica,audio
+audio-technica_aud288,Audio-Technica WH-1000XM4,Audio-Technica,audio
+baseus_acc024,Baseus Cable 1m,Baseus,accessory
+baseus_acc027,Baseus Powerbank 10000mAh,Baseus,accessory
+baseus_acc063,Baseus Charger 65W,Baseus,accessory
+baseus_acc100,Baseus Charger 65W,Baseus,accessory
+baseus_acc146,Baseus Case,Baseus,accessory
+baseus_acc165,Baseus Powerbank 10000mAh,Baseus,accessory
+baseus_acc195,Baseus Earbuds,Baseus,accessory
+baseus_acc203,Baseus Charger 65W,Baseus,accessory
+baseus_acc206,Baseus Charger 65W,Baseus,accessory
+baseus_acc230,Baseus Case,Baseus,accessory
+baseus_acc246,Baseus Earbuds,Baseus,accessory
+baseus_acc269,Baseus Cable 1m,Baseus,accessory
+baseus_acc292,Baseus Earbuds,Baseus,accessory
+belkin_acc017,Belkin Cable 1m,Belkin,accessory
+belkin_acc018,Belkin Earbuds,Belkin,accessory
+belkin_acc049,Belkin Case,Belkin,accessory
+belkin_acc083,Belkin Powerbank 10000mAh,Belkin,accessory
+belkin_acc137,Belkin Cable 1m,Belkin,accessory
+belkin_acc164,Belkin Case,Belkin,accessory
+belkin_acc241,Belkin Cable 1m,Belkin,accessory
+belkin_acc244,Belkin Cable 1m,Belkin,accessory
+belkin_acc263,Belkin Powerbank 10000mAh,Belkin,accessory
+belkin_acc272,Belkin Case,Belkin,accessory
+belkin_acc279,Belkin Earbuds,Belkin,accessory
+belkin_acc297,Belkin Powerbank 10000mAh,Belkin,accessory
+bose_aud016,Bose WH-1000XM4,Bose,audio
+bose_aud047,Bose WH-1000XM4,Bose,audio
+bose_aud103,Bose Momentum,Bose,audio
+bose_aud119,Bose Momentum,Bose,audio
+bose_aud157,Bose Momentum,Bose,audio
+bose_aud215,Bose Charge 5,Bose,audio
+bose_aud254,Bose QC35,Bose,audio
+bose_aud257,Bose Charge 5,Bose,audio
+bose_aud270,Bose Momentum,Bose,audio
+bose_aud278,Bose Charge 5,Bose,audio
+canon_cam001,Canon Alpha 7C Camera,Canon,camera
+canon_cam074,Canon Z50 Camera,Canon,camera
+canon_cam079,Canon Z50 Camera,Canon,camera
+canon_cam110,Canon Z50 Camera,Canon,camera
+canon_cam115,Canon EOS R10 Camera,Canon,camera
+canon_cam125,Canon Alpha 7C Camera,Canon,camera
+canon_cam129,Canon G7X Camera,Canon,camera
+canon_cam139,Canon Z50 Camera,Canon,camera
+canon_cam200,Canon Alpha 7C Camera,Canon,camera
+canon_cam204,Canon G7X Camera,Canon,camera
+canon_cam205,Canon X-T30 Camera,Canon,camera
+canon_cam234,Canon X-T30 Camera,Canon,camera
+canon_cam248,Canon EOS R10 Camera,Canon,camera
+dell_lap048,Dell Core i5 8GB Laptop,Dell,laptop
+dell_lap060,Dell M1 Pro Laptop,Dell,laptop
+dell_lap120,Dell Ryzen 5 8GB Laptop,Dell,laptop
+dell_lap154,Dell Ryzen 7 16GB Laptop,Dell,laptop
+dell_lap161,Dell Core i7 16GB Laptop,Dell,laptop
+dell_lap252,Dell M1 Pro Laptop,Dell,laptop
+dell_lap276,Dell Core i5 8GB Laptop,Dell,laptop
+dell_lap282,Dell Core i7 16GB Laptop,Dell,laptop
+fujifilm_cam014,Fujifilm Z50 Camera,Fujifilm,camera
+fujifilm_cam098,Fujifilm X-T30 Camera,Fujifilm,camera
+fujifilm_cam128,Fujifilm X-T30 Camera,Fujifilm,camera
+fujifilm_cam150,Fujifilm Alpha 7C Camera,Fujifilm,camera
+fujifilm_cam183,Fujifilm Z50 Camera,Fujifilm,camera
+fujifilm_cam271,Fujifilm EOS R10 Camera,Fujifilm,camera
+fujifilm_cam280,Fujifilm Z50 Camera,Fujifilm,camera
+fujifilm_cam287,Fujifilm X-T30 Camera,Fujifilm,camera
+hp_lap008,HP Core i5 8GB Laptop,HP,laptop
+hp_lap046,HP Core i5 8GB Laptop,HP,laptop
+hp_lap109,HP M1 Pro Laptop,HP,laptop
+hp_lap112,HP Ryzen 5 8GB Laptop,HP,laptop
+hp_lap114,HP Core i7 16GB Laptop,HP,laptop
+hp_lap126,HP Core i5 8GB Laptop,HP,laptop
+hp_lap147,HP Core i5 8GB Laptop,HP,laptop
+hp_lap156,HP Core i7 16GB Laptop,HP,laptop
+hp_lap176,HP Core i5 8GB Laptop,HP,laptop
+hp_lap180,HP Ryzen 7 16GB Laptop,HP,laptop
+hp_lap184,HP M1 Pro Laptop,HP,laptop
+hp_lap192,HP Ryzen 7 16GB Laptop,HP,laptop
+hp_lap216,HP Core i7 16GB Laptop,HP,laptop
+hp_lap232,HP Core i7 16GB Laptop,HP,laptop
+hp_lap273,HP Ryzen 7 16GB Laptop,HP,laptop
+hp_lap274,HP M1 Pro Laptop,HP,laptop
+jbl_aud004,JBL QC35,JBL,audio
+jbl_aud015,JBL QC35,JBL,audio
+jbl_aud030,JBL Charge 5,JBL,audio
+jbl_aud122,JBL WH-1000XM4,JBL,audio
+jbl_aud222,JBL Charge 5,JBL,audio
+jbl_aud233,JBL Momentum,JBL,audio
+jbl_aud255,JBL TWS Pro,JBL,audio
+jbl_aud290,JBL TWS Pro,JBL,audio
+lenovo_lap045,Lenovo Core i5 8GB Laptop,Lenovo,laptop
+lenovo_lap071,Lenovo M1 Pro Laptop,Lenovo,laptop
+lenovo_lap127,Lenovo Ryzen 7 16GB Laptop,Lenovo,laptop
+lenovo_lap149,Lenovo Core i5 8GB Laptop,Lenovo,laptop
+lenovo_lap155,Lenovo Core i5 8GB Laptop,Lenovo,laptop
+lenovo_lap173,Lenovo M1 Pro Laptop,Lenovo,laptop
+lenovo_lap199,Lenovo M1 Pro Laptop,Lenovo,laptop
+lg_tv028,LG 43inch TV,LG,tv
+lg_tv032,LG 55inch TV,LG,tv
+lg_tv034,LG 50inch TV,LG,tv
+lg_tv043,LG 55inch TV,LG,tv
+lg_tv058,LG SmartTV TV,LG,tv
+lg_tv075,LG 43inch TV,LG,tv
+lg_tv087,LG 4K TV,LG,tv
+lg_tv089,LG 55inch TV,LG,tv
+lg_tv095,LG SmartTV TV,LG,tv
+lg_tv108,LG 55inch TV,LG,tv
+lg_tv133,LG 4K TV,LG,tv
+lg_tv153,LG 4K TV,LG,tv
+lg_tv229,LG SmartTV TV,LG,tv
+lg_tv247,LG 65inch TV,LG,tv
+nikon_cam003,Nikon Z50 Camera,Nikon,camera
+nikon_cam033,Nikon G7X Camera,Nikon,camera
+nikon_cam039,Nikon Z50 Camera,Nikon,camera
+nikon_cam057,Nikon X-T30 Camera,Nikon,camera
+nikon_cam061,Nikon G7X Camera,Nikon,camera
+nikon_cam077,Nikon G7X Camera,Nikon,camera
+nikon_cam104,Nikon X-T30 Camera,Nikon,camera
+nikon_cam293,Nikon Alpha 7C Camera,Nikon,camera
+oneplus_pho009,OnePlus 15,OnePlus,phone
+oneplus_pho012,OnePlus XS,OnePlus,phone
+oneplus_pho062,OnePlus XS,OnePlus,phone
+oneplus_pho081,OnePlus X,OnePlus,phone
+oneplus_pho171,OnePlus 13,OnePlus,phone
+oneplus_pho194,OnePlus 15,OnePlus,phone
+oneplus_pho196,OnePlus 15,OnePlus,phone
+oneplus_pho239,OnePlus XS,OnePlus,phone
+oneplus_pho242,OnePlus 15,OnePlus,phone
+oneplus_pho295,OnePlus 12,OnePlus,phone
+oppo_pho007,Oppo S23,Oppo,phone
+oppo_pho037,Oppo X,Oppo,phone
+oppo_pho080,Oppo Nord2,Oppo,phone
+oppo_pho091,Oppo 13,Oppo,phone
+oppo_pho130,Oppo 14,Oppo,phone
+oppo_pho148,Oppo 15 Pro Max,Oppo,phone
+oppo_pho174,Oppo 15 Pro,Oppo,phone
+oppo_pho175,Oppo Nord2,Oppo,phone
+oppo_pho225,Oppo XS,Oppo,phone
+oppo_pho228,Oppo X,Oppo,phone
+oppo_pho235,Oppo Note 20,Oppo,phone
+oppo_pho300,Oppo 15 Pro,Oppo,phone
+samsung_pho013,Samsung 15 Pro,Samsung,phone
+samsung_pho040,Samsung 13,Samsung,phone
+samsung_pho050,Samsung 13,Samsung,phone
+samsung_pho105,Samsung X,Samsung,phone
+samsung_pho107,Samsung 15 Pro,Samsung,phone
+samsung_pho138,Samsung 12,Samsung,phone
+samsung_pho182,Samsung Nord2,Samsung,phone
+samsung_pho186,Samsung 15,Samsung,phone
+samsung_pho219,Samsung 14,Samsung,phone
+samsung_pho259,Samsung Note 20,Samsung,phone
+samsung_pho261,Samsung Nord2,Samsung,phone
+samsung_pho281,Samsung 15 Pro,Samsung,phone
+samsung_tv069,Samsung 55inch TV,Samsung,tv
+samsung_tv070,Samsung SmartTV TV,Samsung,tv
+samsung_tv117,Samsung 50inch TV,Samsung,tv
+samsung_tv170,Samsung 50inch TV,Samsung,tv
+samsung_tv249,Samsung 55inch TV,Samsung,tv
+sennheiser_aud113,Sennheiser Momentum,Sennheiser,audio
+sennheiser_aud167,Sennheiser WH-1000XM4,Sennheiser,audio
+sennheiser_aud187,Sennheiser QC35,Sennheiser,audio
+sennheiser_aud226,Sennheiser Charge 5,Sennheiser,audio
+sennheiser_aud231,Sennheiser Momentum,Sennheiser,audio
+sennheiser_aud237,Sennheiser QC35,Sennheiser,audio
+sennheiser_aud243,Sennheiser TWS Pro,Sennheiser,audio
+sennheiser_aud275,Sennheiser QC35,Sennheiser,audio
+sennheiser_aud277,Sennheiser Charge 5,Sennheiser,audio
+sony_aud020,Sony Charge 5,Sony,audio
+sony_aud052,Sony Momentum,Sony,audio
+sony_aud088,Sony Charge 5,Sony,audio
+sony_aud090,Sony WH-1000XM4,Sony,audio
+sony_aud092,Sony Charge 5,Sony,audio
+sony_aud121,Sony WH-1000XM4,Sony,audio
+sony_aud141,Sony Charge 5,Sony,audio
+sony_aud151,Sony WH-1000XM4,Sony,audio
+sony_aud163,Sony Charge 5,Sony,audio
+sony_aud210,Sony Momentum,Sony,audio
+sony_aud218,Sony WH-1000XM4,Sony,audio
+sony_aud221,Sony TWS Pro,Sony,audio
+sony_aud256,Sony Charge 5,Sony,audio
+sony_aud268,Sony Charge 5,Sony,audio
+sony_aud299,Sony Momentum,Sony,audio
+sony_cam038,Sony G7X Camera,Sony,camera
+sony_cam054,Sony X-T30 Camera,Sony,camera
+sony_cam055,Sony X-T30 Camera,Sony,camera
+sony_cam064,Sony X-T30 Camera,Sony,camera
+sony_cam066,Sony Z50 Camera,Sony,camera
+sony_cam078,Sony G7X Camera,Sony,camera
+sony_cam106,Sony EOS R10 Camera,Sony,camera
+sony_cam132,Sony Alpha 7C Camera,Sony,camera
+sony_cam158,Sony EOS R10 Camera,Sony,camera
+sony_cam201,Sony X-T30 Camera,Sony,camera
+sony_cam207,Sony X-T30 Camera,Sony,camera
+sony_cam208,Sony Alpha 7C Camera,Sony,camera
+sony_cam223,Sony Z50 Camera,Sony,camera
+sony_cam240,Sony EOS R10 Camera,Sony,camera
+sony_cam294,Sony Z50 Camera,Sony,camera
+sony_cam296,Sony G7X Camera,Sony,camera
+sony_tv031,Sony SmartTV TV,Sony,tv
+sony_tv035,Sony 65inch TV,Sony,tv
+sony_tv072,Sony 4K TV,Sony,tv
+sony_tv188,Sony 4K TV,Sony,tv
+sony_tv197,Sony 4K TV,Sony,tv
+sony_tv214,Sony 65inch TV,Sony,tv
+sony_tv236,Sony SmartTV TV,Sony,tv
+sony_tv258,Sony 50inch TV,Sony,tv
+sony_tv289,Sony SmartTV TV,Sony,tv
+sony_tv298,Sony 65inch TV,Sony,tv
+tcl_tv011,TCL 50inch TV,TCL,tv
+tcl_tv023,TCL SmartTV TV,TCL,tv
+tcl_tv041,TCL 50inch TV,TCL,tv
+tcl_tv042,TCL 55inch TV,TCL,tv
+tcl_tv073,TCL 65inch TV,TCL,tv
+tcl_tv111,TCL 43inch TV,TCL,tv
+tcl_tv123,TCL SmartTV TV,TCL,tv
+tcl_tv145,TCL 4K TV,TCL,tv
+tcl_tv166,TCL 50inch TV,TCL,tv
+tcl_tv178,TCL SmartTV TV,TCL,tv
+tcl_tv209,TCL 4K TV,TCL,tv
+tcl_tv224,TCL 65inch TV,TCL,tv
+tcl_tv264,TCL 50inch TV,TCL,tv
+ugreen_acc019,Ugreen Case,Ugreen,accessory
+ugreen_acc025,Ugreen Charger 65W,Ugreen,accessory
+ugreen_acc067,Ugreen Cable 1m,Ugreen,accessory
+ugreen_acc094,Ugreen Powerbank 10000mAh,Ugreen,accessory
+ugreen_acc102,Ugreen Powerbank 10000mAh,Ugreen,accessory
+ugreen_acc116,Ugreen Case,Ugreen,accessory
+ugreen_acc135,Ugreen Case,Ugreen,accessory
+ugreen_acc136,Ugreen Cable 1m,Ugreen,accessory
+ugreen_acc142,Ugreen Earbuds,Ugreen,accessory
+ugreen_acc159,Ugreen Cable 1m,Ugreen,accessory
+ugreen_acc220,Ugreen Case,Ugreen,accessory
+ugreen_acc227,Ugreen Powerbank 10000mAh,Ugreen,accessory
+ugreen_acc245,Ugreen Charger 65W,Ugreen,accessory
+ugreen_acc251,Ugreen Case,Ugreen,accessory
+ugreen_acc284,Ugreen Powerbank 10000mAh,Ugreen,accessory
+ugreen_acc291,Ugreen Cable 1m,Ugreen,accessory
+xiaomi_pho005,Xiaomi 15 Pro Max,Xiaomi,phone
+xiaomi_pho022,Xiaomi 13,Xiaomi,phone
+xiaomi_pho026,Xiaomi 15,Xiaomi,phone
+xiaomi_pho029,Xiaomi S23,Xiaomi,phone
+xiaomi_pho051,Xiaomi X,Xiaomi,phone
+xiaomi_pho082,Xiaomi S23,Xiaomi,phone
+xiaomi_pho177,Xiaomi Nord2,Xiaomi,phone
+xiaomi_pho191,Xiaomi XS,Xiaomi,phone
+xiaomi_pho193,Xiaomi XS,Xiaomi,phone
+xiaomi_pho283,Xiaomi 15 Pro,Xiaomi,phone
+xiaomi_tv068,Xiaomi 65inch TV,Xiaomi,tv
+xiaomi_tv086,Xiaomi 50inch TV,Xiaomi,tv
+xiaomi_tv093,Xiaomi 43inch TV,Xiaomi,tv
+xiaomi_tv124,Xiaomi 43inch TV,Xiaomi,tv
+xiaomi_tv152,Xiaomi 55inch TV,Xiaomi,tv
+xiaomi_tv190,Xiaomi 55inch TV,Xiaomi,tv
+xiaomi_tv198,Xiaomi 65inch TV,Xiaomi,tv
+xiaomi_tv217,Xiaomi 50inch TV,Xiaomi,tv
+xiaomi_tv262,Xiaomi SmartTV TV,Xiaomi,tv

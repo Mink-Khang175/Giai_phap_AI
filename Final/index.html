@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="mainstyle.css">
+    <link rel="stylesheet" href="./static/mainstyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
         <div class="header-content">
             <div class="logo">
                 <i class="fas fa-chart-line"></i>
-                <span>AI Price Forecast</span>
+                <span>SaveSmart</span>
             </div>
             <nav class="nav-menu">
                 <a href="#" class="nav-item active"><i class="fas fa-home"></i> Dashboard</a>
@@ -43,9 +43,7 @@
                         </label>
                         <div class="select-wrapper">
                             <select id="site-select">
-                                <option value="shopee">🛒 Shopee</option>
-                                <option value="lazada">🏪 Lazada</option>
-                                <option value="tiki">🏬 Tiki</option>
+                                <option value="">Đang tải...</option>
                             </select>
                             <i class="fas fa-chevron-down select-arrow"></i>
                         </div>
@@ -57,9 +55,7 @@
                         </label>
                         <div class="select-wrapper">
                             <select id="product-select">
-                                <option value="iphone">📱 iPhone 15 Pro Max 256GB</option>
-                                <option value="laptop">💻 Laptop Dell XPS 15</option>
-                                <option value="headphone">🎧 Tai nghe Sony WH-1000XM5</option>
+                                <option value="">Đang tải...</option>
                             </select>
                             <i class="fas fa-chevron-down select-arrow"></i>
                         </div>
@@ -125,7 +121,7 @@
                                 <i class="fas fa-star"></i>
                                 <div class="meta-info">
                                     <span class="meta-label">Đánh giá</span>
-                                    <strong class="meta-value">4.8/5</strong>
+                                    <strong class="meta-value" id="product-rating">--</strong>
                                 </div>
                             </div>
                         </div>
@@ -142,9 +138,13 @@
                 <div class="section-header">
                     <h3><i class="fas fa-chart-area"></i> Biểu Đồ Lịch Sử Giá</h3>
                     <div class="chart-controls">
-                        <button class="chart-btn active">30 ngày</button>
-                        <button class="chart-btn">60 ngày</button>
-                        <button class="chart-btn">90 ngày</button>
+                        <div class="select-wrapper compact-select">
+                            <select id="history-range-select">
+                                <option value="30" selected>30 ngày</option>
+                                <option value="90">90 ngày</option>
+                            </select>
+                            <i class="fas fa-chevron-down select-arrow"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="chart-container">
@@ -162,17 +162,17 @@
             <div class="comparison-section" style="display: none;">
                 <h3><i class="fas fa-balance-scale"></i> So Sánh Giá Giữa Các Sàn</h3>
                 <div class="comparison-grid">
-                    <div class="comparison-card">
+                    <div class="comparison-card" data-platform="shopee">
                         <div class="platform-icon shopee">S</div>
                         <h4>Shopee</h4>
                         <p class="comparison-price">--</p>
                     </div>
-                    <div class="comparison-card">
+                    <div class="comparison-card" data-platform="lazada">
                         <div class="platform-icon lazada">L</div>
                         <h4>Lazada</h4>
                         <p class="comparison-price">--</p>
                     </div>
-                    <div class="comparison-card">
+                    <div class="comparison-card" data-platform="tiki">
                         <div class="platform-icon tiki">T</div>
                         <h4>Tiki</h4>
                         <p class="comparison-price">--</p>
@@ -222,14 +222,27 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
 
-            <!-- AI Prediction Button -->
-            <button id="predict-btn" class="btn-predict" style="display: none;">
-                <i class="fas fa-robot"></i>
-                <span>Xem Dự Báo AI</span>
-                <span class="predict-subtitle">Dự đoán 7 ngày tới</span>
-            </button>
+                <!-- AI Prediction Button -->
+                <div class="forecast-control">
+                    <label for="forecast-days">
+                        <i class="fas fa-calendar-alt"></i> Chọn số ngày dự báo
+                    </label>
+                    <div class="select-wrapper">
+                        <select id="forecast-days">
+                            <option value="7" selected>7 ngày tới</option>
+                            <option value="30">30 ngày tới</option>
+                        </select>
+                        <i class="fas fa-chevron-down select-arrow"></i>
+                    </div>
+                </div>
+
+                <button id="predict-btn" class="btn-predict" style="display: none;">
+                    <i class="fas fa-robot"></i>
+                    <span>Xem Dự Báo AI</span>
+                    <span class="predict-subtitle">Dự đoán 7 ngày tới</span>
+                </button>
 
             <!-- Prediction Results -->
             <div class="prediction-card" id="prediction-results" style="display: none;">
@@ -291,6 +304,6 @@
         </aside>
     </div>
 
-    <script src="mainjs.js"></script>
+    <script src="./static/mainjs.js"></script>
 </body>
 </html>
