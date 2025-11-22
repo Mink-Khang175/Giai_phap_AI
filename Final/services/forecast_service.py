@@ -16,7 +16,7 @@ import numpy as np
 import pandas as pd
 
 from models.LSTM import ForecastConfig, train_and_predict
-from services.integrations import AIContentGenerator, ProductImageProvider
+from services.integrations import AIContentGenerator, ProductImageProvider, TikiAPI
 
 """
 Service xử lý dữ liệu + AI cho hệ thống dự báo giá.
@@ -30,46 +30,7 @@ Biến môi trường liên quan:
 DEFAULT_IMAGE = "https://dummyimage.com/300x300/1f2937/ffffff&text=AI"
 
 PRODUCT_METADATA: Dict[str, Dict[str, str]] = {
-    "iphone14": {
-        "name": "iPhone 14 128GB",
-        "image": "https://images.unsplash.com/photo-1661961110671-77b529b5a091?auto=format&fit=crop&w=400&q=60",
-    },
-    "iphone15": {
-        "name": "iPhone 15 128GB",
-        "image": "https://images.unsplash.com/photo-1695048133142-919945489c86?auto=format&fit=crop&w=400&q=60",
-    },
-    "iphone15promax": {
-        "name": "iPhone 15 Pro Max 256GB",
-        "image": "https://images.unsplash.com/photo-1695048133975-9ec21f84f5a3?auto=format&fit=crop&w=400&q=60",
-    },
-    "ipadpro11": {
-        "name": "iPad Pro 11\"",
-        "image": "https://images.unsplash.com/photo-1510552776732-05b39eca7f00?auto=format&fit=crop&w=400&q=60",
-    },
-    "airpodspro2": {
-        "name": "AirPods Pro 2",
-        "image": "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=400&q=60",
-    },
-    "macbookairm2": {
-        "name": "MacBook Air M2",
-        "image": "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=400&q=60",
-    },
-    "macbookpro14": {
-        "name": "MacBook Pro 14\"",
-        "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=400&q=60",
-    },
-    "dellxps13": {
-        "name": "Dell XPS 13",
-        "image": "https://images.unsplash.com/photo-1517436073-3b1d8f2e0d19?auto=format&fit=crop&w=400&q=60",
-    },
-    "sonyWH1000XM5": {
-        "name": "Sony WH-1000XM5",
-        "image": "https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=400&q=60",
-    },
-    "gopro12": {
-        "name": "GoPro Hero 12",
-        "image": "https://images.unsplash.com/photo-1508896694512-1eade5586790?auto=format&fit=crop&w=400&q=60",
-    },
+    
 }
 
 
@@ -95,6 +56,7 @@ class ProductAnalyticsService:
         lr: float = 1e-3,
         ai_generator: Optional[AIContentGenerator] = None,
         image_provider: Optional[ProductImageProvider] = None,
+        marketplace_client: Optional[TikiAPI] = None,
         products_path: Optional[str | Path] = None,
         platforms_path: Optional[str | Path] = None,
     ) -> None:
@@ -106,6 +68,7 @@ class ProductAnalyticsService:
         self.lr = lr
         self.ai_generator = ai_generator or AIContentGenerator()
         self.image_provider = image_provider or ProductImageProvider(DEFAULT_IMAGE)
+        self.marketplace_client = marketplace_client or TikiAPI()
         self.products_path = Path(products_path) if products_path else (self.csv_path.parent / "products.csv")
         if self.products_path and not self.products_path.exists():
             self.products_path = None
@@ -222,10 +185,38 @@ class ProductAnalyticsService:
                     }
                 )
         catalog.sort(key=lambda item: item["name"])
+
+        prefetch_limit = 0
+        if self.marketplace_client and hasattr(self.marketplace_client, "prefetch_limit"):
+            prefetch_limit = max(0, getattr(self.marketplace_client, "prefetch_limit", 0))
+
+        if prefetch_limit > 0:
+            for idx in range(min(prefetch_limit, len(catalog))):
+                catalog[idx] = self._apply_marketplace_meta(catalog[idx])
+
         return catalog
 
     def get_catalog(self) -> Dict[str, Any]:
         return {"platforms": self.platforms, "products": self.catalog}
+
+    def _cache_product_meta(self, product_meta: Dict[str, Any]) -> None:
+        product_id = product_meta.get("id")
+        if not product_id:
+            return
+        self.catalog_index[product_id] = product_meta
+        for idx, item in enumerate(self.catalog):
+            if item.get("id") == product_id:
+                self.catalog[idx] = product_meta
+                break
+
+    def _apply_marketplace_meta(self, product_meta: Dict[str, Any]) -> Dict[str, Any]:
+        if not self.marketplace_client or not getattr(self.marketplace_client, "is_enabled", lambda: False)():
+            return product_meta
+        try:
+            enriched = self.marketplace_client.enrich_product_meta(product_meta)
+        except Exception:
+            return product_meta
+        return enriched or product_meta
 
     def _filter_series(self, product_id: str, platform: str) -> pd.DataFrame:
         subset = self.df[(self.df["product_id"] == product_id) & (self.df["platform"] == platform)].copy()
@@ -237,11 +228,14 @@ class ProductAnalyticsService:
     def _get_product_meta(self, product_id: str) -> Dict[str, Any]:
         meta = self.catalog_index.get(product_id)
         if meta:
+            meta = dict(meta)
+            meta = self._apply_marketplace_meta(meta)
+            self._cache_product_meta(meta)
             return meta
         fallback = self.products_lookup.get(product_id, {})
         if not fallback:
             fallback = PRODUCT_METADATA.get(product_id, {})
-        return {
+        meta = {
             "id": product_id,
             "name": fallback.get("name", product_id),
             "brand": fallback.get("brand", ""),
@@ -249,6 +243,9 @@ class ProductAnalyticsService:
             "image": fallback.get("image") or self.image_provider.get_image(fallback.get("name", product_id)),
             "platforms": self.platforms,
         }
+        meta = self._apply_marketplace_meta(meta)
+        self._cache_product_meta(meta)
+        return meta
 
     def _build_comparison(self, product_id: str) -> Dict[str, Any]:
         prices: Dict[str, float] = {}

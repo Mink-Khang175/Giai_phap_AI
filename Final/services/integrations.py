@@ -2,7 +2,8 @@ from __future__ import annotations
 
 import os
 import json
-from typing import Dict, Iterable, List, Optional
+from datetime import datetime
+from typing import Any, Dict, Iterable, List, Optional
 
 import requests
 
@@ -90,7 +91,6 @@ class AIContentGenerator:
 
         content = self._strip_code_fence(content)
 
-        # thử parse json trước
         analysis = ""
         recommendation = ""
         try:
@@ -148,3 +148,139 @@ class ProductImageProvider:
             return results[0]["urls"].get("regular")
         except requests.RequestException:
             return None
+
+
+class TikiAPI:
+    """Simple wrapper để kéo dữ liệu sản phẩm trực tiếp từ Tiki."""
+
+    def __init__(
+        self,
+        base_url: Optional[str] = None,
+        timeout: int = 10,
+        enabled: Optional[bool] = None,
+        prefetch_limit: Optional[int] = None,
+    ) -> None:
+        env_flag = os.getenv("ENABLE_TIKI_API")
+        if enabled is None:
+            enabled = env_flag is None or env_flag.lower() not in {"0", "false", "off"}
+
+        self.enabled = enabled
+        self.base_url = base_url or os.getenv("TIKI_API_BASE", "https://tiki.vn/api/v2")
+        self.timeout = timeout
+        if prefetch_limit is None:
+            prefetch_limit = int(os.getenv("TIKI_PREFETCH_LIMIT", "8"))
+        self.prefetch_limit = max(0, prefetch_limit)
+        self.session = requests.Session()
+        self.session.headers.update(
+            {
+                "User-Agent": os.getenv(
+                    "TIKI_API_USER_AGENT",
+                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36",
+                ),
+                "Accept": "application/json",
+            }
+        )
+        self.search_cache: Dict[str, List[Dict[str, Any]]] = {}
+        self.snapshot_cache: Dict[str, Optional[Dict[str, Any]]] = {}
+
+    def is_enabled(self) -> bool:
+        return self.enabled
+
+    def _request(self, path: str, params: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        url = f"{self.base_url}{path}"
+        try:
+            resp = self.session.get(url, params=params, timeout=self.timeout)
+            resp.raise_for_status()
+            return resp.json()
+        except requests.RequestException:
+            return {}
+
+    def _normalize_product(self, item: Dict[str, Any]) -> Dict[str, Any]:
+        url_path = (item.get("url_path") or "").lstrip("/")
+        product_url = f"https://tiki.vn/{url_path}" if url_path else None
+        thumbnail = item.get("thumbnail_url") or item.get("image_url")
+        brand = None
+        brand_data = item.get("brand")
+        if isinstance(brand_data, dict):
+            brand = brand_data.get("name")
+        seller = None
+        seller_data = item.get("seller")
+        if isinstance(seller_data, dict):
+            seller = seller_data.get("name")
+        return {
+            "id": item.get("id"),
+            "name": item.get("name"),
+            "price": item.get("price") or item.get("min_price"),
+            "original_price": item.get("original_price") or item.get("list_price"),
+            "thumbnail_url": thumbnail,
+            "url": product_url,
+            "rating": item.get("rating_average"),
+            "review_count": item.get("review_count"),
+            "discount_rate": item.get("discount_rate"),
+            "brand": brand,
+            "seller": seller,
+            "checked_at": datetime.utcnow().isoformat(),
+        }
+
+    def search_products(self, keyword: str, limit: int = 5) -> List[Dict[str, Any]]:
+        if not self.enabled:
+            return []
+        query = (keyword or "").strip()
+        if not query:
+            return []
+        cache_key = f"{query.lower()}::{limit}"
+        if cache_key in self.search_cache:
+            return self.search_cache[cache_key]
+
+        params = {"limit": limit, "page": 1, "q": query}
+        payload = self._request("/products", params=params)
+        items = payload.get("data") if isinstance(payload, dict) else None
+        if not isinstance(items, list):
+            self.search_cache[cache_key] = []
+            return []
+
+        normalized = [self._normalize_product(item) for item in items if isinstance(item, dict)]
+        self.search_cache[cache_key] = normalized
+        return normalized
+
+    def get_product_snapshot(self, keyword: str) -> Optional[Dict[str, Any]]:
+        query = (keyword or "").strip()
+        if not query:
+            return None
+        cache_key = query.lower()
+        if cache_key in self.snapshot_cache:
+            return self.snapshot_cache[cache_key]
+
+        results = self.search_products(query, limit=1)
+        snapshot = results[0] if results else None
+        self.snapshot_cache[cache_key] = snapshot
+        return snapshot
+
+    def enrich_product_meta(self, meta: Dict[str, Any]) -> Dict[str, Any]:
+        if not self.enabled:
+            return meta
+        query = (meta.get("name") or meta.get("id") or "").strip()
+        if not query:
+            return meta
+
+        snapshot = self.get_product_snapshot(query)
+        if not snapshot:
+            return meta
+
+        enriched = dict(meta)
+        image = snapshot.get("thumbnail_url")
+        if image:
+            enriched["image"] = image
+        enriched["live_price"] = snapshot.get("price")
+        enriched["live_original_price"] = snapshot.get("original_price")
+        enriched["live_source"] = "Tiki"
+        enriched["live_url"] = snapshot.get("url")
+        enriched["live_rating"] = snapshot.get("rating")
+        enriched["live_review_count"] = snapshot.get("review_count")
+        enriched["live_checked_at"] = snapshot.get("checked_at")
+        if snapshot.get("seller"):
+            enriched["live_seller"] = snapshot.get("seller")
+        if snapshot.get("brand") and not enriched.get("brand"):
+            enriched["brand"] = snapshot.get("brand")
+        return enriched

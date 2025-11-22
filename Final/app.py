@@ -21,9 +21,7 @@ from services.forecast_service import ProductAnalyticsService
 
 app = Flask(__name__, static_folder=str(BASE_DIR / "static"), template_folder=str(BASE_DIR))
 
-# Lưu ý:
-# - Đặt GEN_AI_API_KEY (và GEN_AI_MODEL nếu muốn) để kích hoạt mô tả/khuyến nghị từ AI ngoài.
-# - Đặt UNSPLASH_ACCESS_KEY nếu muốn ảnh sản phẩm lấy trực tiếp từ Unsplash API.
+
 service = ProductAnalyticsService(
     BASE_DIR / "dataset" / "dataset.csv",
     products_path=BASE_DIR / "dataset" / "products.csv",

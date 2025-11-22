@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import os
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Optional, Sequence, Tuple
 
 os.environ.setdefault("OMP_NUM_THREADS", "1")
@@ -241,8 +242,8 @@ def train_and_predict(
 
 if __name__ == "__main__":
     DEFAULT_CONFIG = ForecastConfig(
-        csv_path="Giai_phap_AI/Final/dataset/dataset.csv",
-        product_id="iphone15",
+        csv_path=Path(__file__).resolve().parents[1] / "dataset" / "dataset_sense.csv",
+        product_id="anker_acc036",
         platform="shopee",
         seq_len=365,
         batch_size=32,

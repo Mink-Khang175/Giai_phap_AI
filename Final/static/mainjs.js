@@ -13,6 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const productImageEl = document.getElementById("product-image");
     const updateTimeEl = document.getElementById("update-time");
     const productRatingEl = document.getElementById("product-rating");
+    const priceLabelEl = document.getElementById("price-label");
+    const liveMetaEl = document.getElementById("live-meta");
+    const liveSourceEl = document.getElementById("live-source");
+    const liveUpdatedEl = document.getElementById("live-updated");
+    const liveLinkEl = document.getElementById("live-link");
 
     const analysisMetricsDiv = document.getElementById("analysis-metrics");
     const avgPriceEl = document.getElementById("avg-price");
@@ -51,6 +56,11 @@ document.addEventListener("DOMContentLoaded", () => {
     function formatDate(dateString) {
         if (!dateString) return "--";
         return new Date(dateString).toLocaleDateString("vi-VN");
+    }
+
+    function formatDateTime(dateString) {
+        if (!dateString) return "--";
+        return new Date(dateString).toLocaleString("vi-VN");
     }
 
     function showError(message) {
@@ -268,11 +278,52 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateProductInfo(data) {
         productNameEl.textContent = data.product.name;
         productPriceEl.textContent = formatCurrency(data.latest_price);
-        productSiteEl.textContent = siteSelect.options[siteSelect.selectedIndex].textContent.trim();
-        productImageEl.src = data.product.image;
+
+        if (priceLabelEl) {
+            priceLabelEl.textContent = "Giá hiện tại";
+        }
+
+        const selectedSiteOption = siteSelect.options[siteSelect.selectedIndex];
+        productSiteEl.textContent = selectedSiteOption ? selectedSiteOption.textContent.trim() : data.platform || "--";
+
+        productImageEl.src = data.product.image || "";
+        productImageEl.alt = data.product.name;
         productInfoDiv.style.display = "flex";
+
+        if (liveMetaEl) {
+            const hasLiveData = Boolean(
+                data.product.live_url ||
+                data.product.live_source ||
+                data.product.live_checked_at ||
+                data.product.live_price
+            );
+            liveMetaEl.style.display = hasLiveData ? "flex" : "none";
+            if (hasLiveData) {
+                if (liveSourceEl) {
+                    liveSourceEl.textContent = data.product.live_source || "API";
+                }
+                if (liveUpdatedEl) {
+                    liveUpdatedEl.textContent = data.product.live_checked_at
+                        ? formatDateTime(data.product.live_checked_at)
+                        : "Vừa cập nhật";
+                }
+                if (liveLinkEl) {
+                    if (data.product.live_url) {
+                        liveLinkEl.href = data.product.live_url;
+                        liveLinkEl.style.display = "inline-flex";
+                    } else {
+                        liveLinkEl.removeAttribute("href");
+                        liveLinkEl.style.display = "none";
+                    }
+                }
+            }
+        }
+
         updateTimeEl.textContent = formatDate(data.last_updated);
-        productRatingEl.textContent = data.rating ? `${Number(data.rating).toFixed(1)}/5` : "--";
+        const ratingValue = data.rating !== null && data.rating !== undefined
+            ? data.rating
+            : data.product.live_rating;
+        productRatingEl.textContent = ratingValue ? `${Number(ratingValue).toFixed(1)}/5` : "--";
     }
 
     function updateMetrics(data) {
